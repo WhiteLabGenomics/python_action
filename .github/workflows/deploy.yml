@@ -4,7 +4,7 @@ on:
     branches:
       - "main"
       - "develop"
-  jobs:
-    build:
-      uses: WhiteLabGenomics/python_action/.github/workflows/build.yml
-      secrets: inherit
+jobs:
+  build:
+    uses: WhiteLabGenomics/python_action/.github/workflows/build.yml
+    secrets: inherit
