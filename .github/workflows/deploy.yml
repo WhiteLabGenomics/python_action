@@ -8,3 +8,22 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     secrets: inherit
+
+  deploy: # fake deploy for now, we print a message on slack.
+    runs-on: ubuntu-22.04
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        # DEPLOY_LOGIN: ${{ secrets.DEPLOY_LOGIN }}
+        # DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+      container:
+        image: lucasalt/act_base:latest # Use to get the docker-compose command
+      steps:
+        - name: deploy
+          run: |
+            echo -e "\033[1;33mDeploying on 'pippo.fr'\033[0m"
+          # TODO: do something to deploy the model
+        - uses: act10ns/slack@v1
+            with:
+              status: done
+              message: model successfully deployed!
+
