@@ -1,19 +1,14 @@
-"""File to do unit tests."""
-import unittest
-
+"""Module to perform unit tests."""
 from src.random_code import Random
 
 
-class RandomTest(unittest.TestCase):
-    """Unit test for the example."""
+class RandomTest:
+    """Object to collect unit test for the example class."""
 
     def test_random(self):
-        """Test the random code."""
-        liste_a = [i for i in range(10)]
-        for a in liste_a:
+        """Test the random code object."""
+        list_a = [i for i in range(10)]
+
+        for a in list_a:
             new_a = Random(a).get_values()
-            self.assertEqual(a, new_a)
-
-
-if __name__ == "__main__":
-    unittest.main()
+            assert a == new_a
