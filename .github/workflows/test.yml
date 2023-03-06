@@ -6,6 +6,7 @@ jobs:
     container:
       image: lucasalt/act_base:latest # Use to get the docker-compose command
     steps:
+      - uses: actions/checkout@v3 # Use to copy the files from current directory
       - name: Test formatting
         run: |
           set -euxo
