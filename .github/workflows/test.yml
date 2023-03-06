@@ -1,0 +1,21 @@
+name: complete build
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    container:
+      image: lucasalt/act_base:latest # Use to get the docker-compose command
+    steps:
+      - name: Test formatting
+        run: |
+          set -euxo
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build format_test
+      - name: Complexity
+        run: |
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build complexity
+      - name: Documentation
+        run: |
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
+      - name: Unit Test
+        run: |
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unit
