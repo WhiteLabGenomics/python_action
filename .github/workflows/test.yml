@@ -17,6 +17,9 @@ jobs:
       - name: Documentation
         run: |
           docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
-      - name: Unit Test
+      - name: Test Coverage
         run: |
-          pytest -v --cov=src tests/
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build coverage
+      - name: Run Tests
+        run: |
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unittest

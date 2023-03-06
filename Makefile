@@ -11,7 +11,7 @@ export DOCUMENTATION_SCORE=5
 # Max line length for black
 MAX_LINE_LENGTH=99
 
-export PYTHON?=poetry run python -m
+export PYTHON=python -m
 
 # Path to the lintage directory
 LINTAGE_DIR=scripts/lintage
@@ -36,4 +36,7 @@ test_complexity:
 test_documentation:
 	${LINTAGE_DIR}/documentation.sh
 
-all_tests: test_static_all test_complexity test_documentation test_unit_coverage
+test_run_tests:
+	${LINTAGE_DIR}/run_tests.sh
+
+all_tests: test_static_all test_complexity test_documentation test_unit_coverage test_run_tests 

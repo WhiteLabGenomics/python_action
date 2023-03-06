@@ -7,13 +7,20 @@ services:
     container_name: code_test
     command:
       make test_static_all
-  unit:
+  coverage:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: coverage
+    command:
+      make test_unit_coverage
+  unittest:
     build:
       context: ../..
       dockerfile: scripts/docker_lintage/Dockerfile
     container_name: unittests
     command:
-      make test_unit_coverage
+      make run_tests
   complexity:
     build:
       context: ../..
