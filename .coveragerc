@@ -1,0 +1,12 @@
+# .coveragerc to control test coverage
+[run]
+branch = True
+omit =  
+        src/__init__.py
+        **__main__*
+
+[report]
+show_missing = True
+
+# [html]
+# directory = coverage_html_report
