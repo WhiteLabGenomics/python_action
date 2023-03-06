@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1' # version numbers will approach the infinite series of pi.
 services:
   format_test:
     build:
