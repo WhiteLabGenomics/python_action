@@ -14,7 +14,7 @@ MAX_LINE_LENGTH=99
 export PYTHON?=poetry run python -m
 
 # Path to the lintage directory
-LINTAGE_DIR=script/lintage
+LINTAGE_DIR=scripts/lintage
 
 # Convert the code to black format
 format_code :
