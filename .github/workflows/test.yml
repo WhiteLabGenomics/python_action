@@ -19,4 +19,4 @@ jobs:
           docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
       - name: Unit Test
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unit
+          pytest -v --cov=src tests/
