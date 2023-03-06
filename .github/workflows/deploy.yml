@@ -6,5 +6,5 @@ on:
       - "develop"
 jobs:
   build:
-    uses: WhiteLabGenomics/python_action/.github/workflows/build.yml
+    uses: ./.github/workflows/build.yml
     secrets: inherit
