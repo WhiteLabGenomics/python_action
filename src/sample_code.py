@@ -1,25 +1,25 @@
-"""Example file for random things."""
+"""Example file for template."""
 
 
-class Random:
-    """Example class for random things."""
+class Sample:
+    """Example class"""
 
     def __init__(self, number: int):
         """
-        Random initialisation
+        Identical initialisation
 
         Parameters
         ----------
         number: int
-            a random number
+            a number
         """
         self.number = number
 
     def get_values(self) -> int:
-        """Return random value
+        """Return value
 
         Returns
         -------
         int
-        A random integer number"""
+            The memorised integer number"""
         return self.number

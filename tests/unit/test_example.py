@@ -1,14 +1,14 @@
 """Module to perform unit tests."""
-from src.random_code import Random
+from src.sample_code import Sample
 
 
-class RandomTest:
+class TestSample:
     """Object to collect unit test for the example class."""
 
-    def test_random(self):
-        """Test the random code object."""
+    def test_sample(self):
+        """Test the sample code object."""
         list_a = [i for i in range(10)]
 
         for a in list_a:
-            new_a = Random(a).get_values()
+            new_a = Sample(a).get_values()
             assert a == new_a
