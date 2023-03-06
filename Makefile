@@ -10,6 +10,7 @@ export DOCUMENTATION_SCORE=5
 
 # Max line length for black
 MAX_LINE_LENGTH=99
+
 export PYTHON?=poetry run python -m
 
 # Path to the lintage directory
