@@ -18,16 +18,16 @@ jobs:
       - name: Test static
         run: |
           set -euxo
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build format_test
-      - name : Complexity
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build format_test
+      - name: Complexity
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build complexity
-      - name : Documentation
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build complexity
+      - name: Documentation
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build documentation
-      - name : Unit
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
+      - name: Unit
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build unit
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unit
       - uses: act10ns/slack@v1
         with:
           status: ${{job.status}}
