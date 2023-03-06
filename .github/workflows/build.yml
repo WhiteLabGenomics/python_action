@@ -1,6 +1,5 @@
 name: complete build
-on:
-  pull_request, workflow_call:
+on: [pull_request, workflow_call]
 jobs:
   lintage-checks:
     runs-on: ubuntu-22.04
