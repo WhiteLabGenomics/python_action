@@ -27,7 +27,7 @@ test_static_all: format_code
 	$(PYTHON) mypy . --ignore-missing-imports
 	$(PYTHON) flake8 --exclude=tests --max-line-length $(MAX_LINE_LENGTH) .
 
-test_unit_coverage:
+test_coverage:
 	${LINTAGE_DIR}/coverage.sh
 
 test_complexity:
@@ -39,4 +39,4 @@ test_documentation:
 run_tests:
 	${LINTAGE_DIR}/run_tests.sh
 
-all_tests: test_static_all test_complexity test_documentation test_unit_coverage run_tests 
+all_tests: test_static_all test_complexity test_documentation test_coverage run_tests 
