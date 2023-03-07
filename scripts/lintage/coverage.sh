@@ -5,9 +5,9 @@ score=$($PYTHON coverage report | tail -n1 | sed -E "s/ +/ /g" | cut -f6 -d " " 
 condition=$(echo "$score>=$COVERAGE_SCORE" | bc -l)
 echo "COVERAGE UNIT TEST : ${score} | ACCEPTABLE_SCORE : ${COVERAGE_SCORE}"
 if [[ $condition == "1" ]]; then
-  echo "${GREEN}Coverage Score acceptable: ${COVERAGE_SCORE}. ${NC}"
+  echo -e "${GREEN}Coverage Score above threshold. ${NC}"
   exit 0
 else
-  echo "${RED}Coverage score not acceptable : please, implement more tests for your code.${NC}"
+  echo -e "${RED}Coverage score not acceptable : please, implement more tests for your code.${NC}"
   exit 1
 fi
