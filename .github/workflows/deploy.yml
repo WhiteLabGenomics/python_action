@@ -23,7 +23,7 @@ jobs:
         run: |
           echo -e "\033[1;33mDeploying on 'pippo.fr'\033[0m"
         # TODO: do something to deploy the model
-      - uses: act10ns/slack@v1
+      - uses: act10ns/slack@v2
         with:
           status: done
           message: model successfully deployed!
