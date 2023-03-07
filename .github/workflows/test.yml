@@ -7,19 +7,23 @@ jobs:
       image: lucasalt/act_base:latest # Use to get the docker-compose command
     steps:
       - uses: actions/checkout@v3 # Use to copy the files from current directory
+      - name: install pip and dependencies
+        run: |
+          pip install --upgrade pip --no-cache
+          pip install -U --no-cache-dir -r requirements.txt
       - name: Test formatting
         run: |
           set -euxo
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build format_test
+          make test_static_all
       - name: Complexity
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build complexity
+          make complexity
       - name: Documentation
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
+          make documentation
       - name: Test Coverage
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build coverage
+          make coverage
       - name: Run Tests
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unittest
+          make unittest
