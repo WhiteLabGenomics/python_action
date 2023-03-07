@@ -1,20 +1,6 @@
-# Path to check the code
-export PATH_TO_CODE=src
-# Path to the unit tests
-export PATH_TO_UNIT_TESTS=tests/unit
-
-# Score thresholds
-export COVERAGE_SCORE=50
-export COMPLEXITY_SCORE=2
-export DOCUMENTATION_SCORE=5
-
-# Max line length for black
-MAX_LINE_LENGTH=99
-
-export PYTHON=python -m
-
-# Path to the lintage directory
-LINTAGE_DIR=scripts/lintage
+# Environment variables in make.env file
+include make.env
+export
 
 # Convert the code to black format
 format_code :
