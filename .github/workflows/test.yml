@@ -3,8 +3,8 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-22.04
-    container:
-      image: lucasalt/act_base:latest # Use to get the docker-compose command
+    #container:
+    #  image: lucasalt/act_base:latest # Use to get the docker-compose command
     steps:
       - uses: actions/checkout@v3 # Use to copy the files from current directory
       - name: Set up Python 3.9
