@@ -27,9 +27,9 @@ jobs:
       - name: Test Coverage
         run: |
           docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build coverage
-        uses: act10ns/slack@v2
+      - uses: act10ns/slack@v2
         with:
-          status: starting
+          status: ${{job.status}}
           message: Shame on ${{ github.event.name.pull_request.user.login }}! Test coverage is not enough.
         if: failure()
       - name: Unit Test
