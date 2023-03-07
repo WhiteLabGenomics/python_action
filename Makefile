@@ -39,4 +39,4 @@ test_documentation:
 run_tests:
 	${LINTAGE_DIR}/run_tests.sh
 
-all_tests: test_static_all test_complexity test_documentation test_unit_coverage test_run_tests 
+all_tests: test_static_all test_complexity test_documentation test_unit_coverage run_tests 

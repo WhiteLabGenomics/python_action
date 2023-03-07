@@ -7,23 +7,27 @@ jobs:
       image: lucasalt/act_base:latest # Use to get the docker-compose command
     steps:
       - uses: actions/checkout@v3 # Use to copy the files from current directory
-      - name: install pip and dependencies
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
         run: |
-          pip install --upgrade pip --no-cache
-          pip install -U --no-cache-dir -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Test formatting
         run: |
           set -euxo
           make test_static_all
       - name: Complexity
         run: |
-          make complexity
+          make test_complexity
       - name: Documentation
         run: |
-          make documentation
+          make test_documentation
       - name: Test Coverage
         run: |
-          make coverage
+          make test_coverage
       - name: Run Tests
         run: |
-          make unittest
+          make run_tests
