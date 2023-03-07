@@ -3,7 +3,7 @@
 branch = True
 omit =  
         src/__init__.py
-        **__main__*
+        *__main__*
 
 [report]
 show_missing = True
