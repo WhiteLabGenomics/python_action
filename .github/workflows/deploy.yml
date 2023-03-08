@@ -27,4 +27,4 @@ jobs:
         with:
           status: done
           message: model successfully deployed!
-          config: .github/config/slack.yml
+          config: .github/workflows/config/slack.yml
