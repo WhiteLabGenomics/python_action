@@ -1,7 +1,7 @@
 name: complete build
 on: [pull_request, workflow_call]
 jobs:
-  lintage-checks:
+  Build Docker image:
     runs-on: ubuntu-22.04
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -17,16 +17,16 @@ jobs:
       - name: Test formatting
         run: |
           set -euxo
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build format_test
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build format_test
       - name: Complexity
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build complexity
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build complexity
       - name: Documentation
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build documentation
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build documentation
       - name: Test Coverage
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build coverage
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build coverage
       - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
@@ -34,7 +34,7 @@ jobs:
         if: failure()
       - name: Unit Test
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml up --build unittest
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build unittest
       - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
