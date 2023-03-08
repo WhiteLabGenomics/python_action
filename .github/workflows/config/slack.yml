@@ -1,8 +1,8 @@
-username: GitHub-CI
+username: SlackOverflow
 icon_url: https://user-images.githubusercontent.com/49638680/220935499-152df545-6ede-4cce-87f0-ddf5ad1cbb0a.png
 
 pretext: Triggered via {{eventName}} by {{actor}} {{or action "action"}} {{ref}} `{{diffRef}}`
-title: GitHub Actions
+title: GitHub Workflow
 title_link: https://support.github.com
 
 text: |
@@ -46,10 +46,10 @@ footer: >-
   <{{repositoryUrl}}|{{repositoryName}}> {{workflow}} #{{runNumber}}
 
 colors:
-  success: "#5DADE2"
-  failure: "#884EA0"
-  cancelled: "#A569BD"
-  default: "#7D3C98"
+  success: "#10A323"
+  failure: "#A3002B"
+  cancelled: "#EF2900"
+  default: "#0211EF"
 
 icons:
   success: ":tada:"
