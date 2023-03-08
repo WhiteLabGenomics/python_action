@@ -34,7 +34,7 @@ jobs:
       - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
-          message: Shame on ${{ github.event.pull_request.user.login }}! Your Code is not compliant with ${{ STEP }}.
+          message: Shame on ${{ github.event.pull_request.user.login }}! Your Code is not compliant with $STEP.
           #channel: '#general'
         if: failure()
       - name: Unit Test
