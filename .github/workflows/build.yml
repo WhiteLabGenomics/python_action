@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: act10ns/slack@v2
         with:
+          config: .github/config/slack.yml
           status: starting
           message: Pull request has problems in initialising containers.
         if: failure()
@@ -28,6 +29,7 @@ jobs:
           docker-compose -f scripts/docker_lintage/docker-compose.yaml run coverage
       - uses: act10ns/slack@v2
         with:
+          config: .github/config/slack.yml
           status: ${{job.status}}
           message: Shame on ${{ github.event.pull_request.user.login }}! Your Code is not compliant with ${{ env.action_step }}.
           #channel: '#general'
@@ -37,6 +39,7 @@ jobs:
           docker-compose -f scripts/docker_lintage/docker-compose.yaml run unittest
       - uses: act10ns/slack@v2
         with:
+          config: .github/config/slack.yml
           status: ${{job.status}}
           steps: ${{toJson(steps)}}
         if: always()
