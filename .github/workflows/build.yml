@@ -16,25 +16,30 @@ jobs:
       - uses: actions/checkout@v3 # Use to copy the files from current directory
       - name: Test formatting
         run: |
+          echo "STEP=$(echo Test Formatting | cut -c 1-20)" >> $STEP
           set -euxo
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build format_test
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run format_test
       - name: Complexity
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build complexity
+          echo "STEP=$(echo Code Complexity | cut -c 1-20)" >> $STEP
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run complexity
       - name: Documentation
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build documentation
+          echo "STEP=$(echo Documentation | cut -c 1-20)" >> $STEP
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run documentation
       - name: Test Coverage
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build coverage
+          echo "STEP=$(echo Test Coverage | cut -c 1-20)" >> $STEP
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run coverage
       - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
-          message: Shame on ${{ github.event.name.pull_request.user.login }}! Test coverage is not enough.
+          message: Shame on ${{ github.event.pull_request.user.login }}! Your Code is not compliant with ${{ STEP }}.
+          #channel: '#general'
         if: failure()
       - name: Unit Test
         run: |
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run --build unittest
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run unittest
       - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
