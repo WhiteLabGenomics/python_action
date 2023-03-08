@@ -50,10 +50,9 @@ colors:
   failure: "#884EA0"
   cancelled: "#A569BD"
   default: "#7D3C98"
-
-icons:
-  success: ":tada:"
-  failure: ":scream:"
-  cancelled: ":x:"
-  skipped: ":kangaroo:"
-  default: ":interrobang:"
+#icons:
+#   success: ":tada:"
+#   failure: ":scream:"
+#   cancelled: ":x:"
+#   skipped: ":kangaroo:"
+#   default: ":interrobang:"
