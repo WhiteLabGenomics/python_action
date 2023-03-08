@@ -1,7 +1,7 @@
-name: complete build
+name: Build Docker Image
 on: [pull_request, workflow_call]
 jobs:
-  Build Docker image:
+  build-image:
     runs-on: ubuntu-22.04
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
