@@ -1,0 +1,31 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3 # Use to copy the files from current directory
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Test formatting
+        run: |
+          set -euxo
+          make test_static_all
+      - name: Complexity
+        run: |
+          make test_complexity
+      - name: Documentation
+        run: |
+          make test_documentation
+      - name: Test Coverage
+        run: |
+          make test_coverage
+      - name: Run Tests
+        run: |
+          make run_tests

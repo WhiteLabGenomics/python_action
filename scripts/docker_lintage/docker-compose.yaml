@@ -1,0 +1,37 @@
+version: '3.1' # version numbers will approach the infinite series of pi.
+services:
+  format_test:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: code_test
+    command:
+      make test_static_all
+  coverage:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: coverage
+    command:
+      make test_coverage
+  complexity:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: complexity
+    command:
+      make test_complexity
+  documentation:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: documentation
+    command:
+      make test_documentation 
+  unittest:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: unittests
+    command:
+      make run_tests

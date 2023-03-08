@@ -1,35 +1,45 @@
-name: Lintage, tests
-on:
-  push:
+name: Build Docker Image
+on: [pull_request, workflow_call]
 jobs:
-  lintage:
+  build-image:
     runs-on: ubuntu-22.04
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     container:
       image: lucasalt/act_base:latest # Use to get the docker-compose command
     steps:
-      - uses: act10ns/slack@v1
+      - uses: act10ns/slack@v2
         with:
           status: starting
-          message: Pull request
-        if: always()
+          message: Pull request has problems in initialising containers.
+          config: .github/workflows/config/slack.yml
+        if: failure()
       - uses: actions/checkout@v3 # Use to copy the files from current directory
-      - name: Test static
+      - name: Complexity
         run: |
-          set -euxo
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build format_test
-      - name : Complexity
+          echo "action_step='Code Complexity'" >> $GITHUB_ENV
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run complexity
+      - name: Documentation
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build complexity
-      - name : Documentation
+          echo "action_step='Code Documentation'" >> $GITHUB_ENV
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run documentation
+      - name: Test Coverage
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build documentation
-      - name : Unit
+          echo "action_step='Test Coverage'" >> $GITHUB_ENV
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run coverage
+      - uses: act10ns/slack@v2
+        with:
+          status: ${{job.status}}
+          message: Shame on ${{ github.event.pull_request.user.login }}! Your Code is not compliant with ${{ env.action_step }}.
+          #channel: '#general'
+          config: .github/workflows/config/slack.yml
+        if: failure()
+      - name: Unit Test
         run: |
-          docker-compose -f script/docker_lintage/docker-compose.yaml up --build unit
-      - uses: act10ns/slack@v1
+          docker-compose -f scripts/docker_lintage/docker-compose.yaml run unittest
+      - uses: act10ns/slack@v2
         with:
           status: ${{job.status}}
           steps: ${{toJson(steps)}}
+          config: .github/workflows/config/slack.yml
         if: always()
