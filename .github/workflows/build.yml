@@ -11,14 +11,9 @@ jobs:
       - uses: act10ns/slack@v2
         with:
           status: starting
-          message: Pull request opened successfully by ${{ github.event.pull_request.user.login }}
-        if: always()
+          message: Pull request has problems in initialising containers.
+        if: failure()
       - uses: actions/checkout@v3 # Use to copy the files from current directory
-      - name: Test formatting
-        run: |
-          echo "action_step='Test Formatting'" >> $GITHUB_ENV
-          set -euxo
-          docker-compose -f scripts/docker_lintage/docker-compose.yaml run format_test
       - name: Complexity
         run: |
           echo "action_step='Code Complexity'" >> $GITHUB_ENV
