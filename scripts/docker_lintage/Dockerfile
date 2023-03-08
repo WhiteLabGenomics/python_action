@@ -6,7 +6,7 @@ USER root
 
 ENV LOCAL_PATH=.
 
-WORKDIR app
+WORKDIR .
 
 COPY $LOCAL_PATH/requirements.txt .
 

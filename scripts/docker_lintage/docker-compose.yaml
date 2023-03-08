@@ -13,14 +13,7 @@ services:
       dockerfile: scripts/docker_lintage/Dockerfile
     container_name: coverage
     command:
-      make test_unit_coverage
-  unittest:
-    build:
-      context: ../..
-      dockerfile: scripts/docker_lintage/Dockerfile
-    container_name: unittests
-    command:
-      make run_tests
+      make test_coverage
   complexity:
     build:
       context: ../..
@@ -34,4 +27,11 @@ services:
       dockerfile: scripts/docker_lintage/Dockerfile
     container_name: documentation
     command:
-      make test_documentation
+      make test_documentation 
+  unittest:
+    build:
+      context: ../..
+      dockerfile: scripts/docker_lintage/Dockerfile
+    container_name: unittests
+    command:
+      make run_tests
