@@ -1,9 +1,11 @@
 name: deploy
 on:
-  push:
-    branches:
-      - "main"
-      - "develop"
+  - push:
+      branches:
+        - "main"
+        - "develop"
+  - workflow_call
+
 jobs:
   build:
     uses: ./.github/workflows/build.yml
